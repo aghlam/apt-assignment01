@@ -48,12 +48,26 @@ void readMazeStdin(Maze maze) {
     // ASSUME THE MAZE IS A FIXED SIZE (20X20).
 
     // TODO
+    if(std::cin.good()) {
+        for(int i=0; i< MAZE_DIM; ++i) {
+            for(int j=0; j< MAZE_DIM; ++j) {
+                std::cin >> maze[i][j];
+            }
+        }
+    }
 }
 
 
 void printMazeStdout(Maze maze, Trail* solution) {
     // TODO
-    std::cout << "TODO" << std::endl;
+    // std::cout << "TODO" << std::endl;
+    for(int i=0; i< MAZE_DIM; ++i) {
+        for(int j=0; j< MAZE_DIM; ++j) {
+            std::cout << maze[i][j];
+            }
+        std::cout << std::endl;
+    }
+    
 }
 
 void testBreadcrumb() {
