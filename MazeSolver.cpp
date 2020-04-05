@@ -35,12 +35,12 @@ void MazeSolver::solve(Maze maze) {
       //           << ")" << std::endl;
 
       // Look NORTH
-      if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      // Is it open AND is there a breadcrumb?
-         y--;                                                        // Move NORTH
+      if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {
+         y--;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
-         bc->setDirection("north");               // Create breadcrumb at coordinates
-         solution->addCopy(bc);                                      // Add to trail
-         trailIndex = solution->size()-1;                            // Set non stale breadcrumb index
+         bc->setDirection("north");
+         solution->addCopy(bc);
+         trailIndex = solution->size()-1;
       }
       // Look EAST
       else if(maze[y][x+1] == OPEN && !solution->contains(x+1, y)) { 
@@ -70,7 +70,7 @@ void MazeSolver::solve(Maze maze) {
       else {
          bool looking = true;
          
-         solution->getPtr(trailIndex)->setStale(true);               // Make that breadcrumb stale!
+         solution->getPtr(trailIndex)->setStale(true);
 
          do {
             if(solution->getPtr(trailIndex)->isStale()) {
@@ -85,7 +85,8 @@ void MazeSolver::solve(Maze maze) {
 
       }
 
-      if ((maze[y-1][x])=='E' || (maze[y][x+1])=='E' || (maze[y+1][x])=='E' || (maze[y][x-1])=='E') {
+      if ((maze[y-1][x])=='E' || (maze[y][x+1])=='E' 
+            || (maze[y+1][x])=='E' || (maze[y][x-1])=='E') {
          notE = false;
       }
 
@@ -98,8 +99,17 @@ Trail* MazeSolver::getSolution() {
    return solutionCopy;
 }
 
-// Milestone #4
+// Milestone #4 Constructor
+MazeSolver::MazeSolver(int rows, int cols) {
+   this->solution = new Trail(rows, cols);
+}
 
+Trail* MazeSolver::getSolution(int rows, int cols) {
+   solutionCopy = new Trail(*solution, rows, cols);
+   return solutionCopy;
+}
+
+// Milestone #4 solver
 void MazeSolver::solve(Maze maze, int rows, int cols) {
    // Coordinates, 
    int x = 0;
@@ -162,7 +172,7 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
       else {
          bool looking = true;
          
-         solution->getPtr(trailIndex)->setStale(true);               // Make that breadcrumb stale!
+         solution->getPtr(trailIndex)->setStale(true);
 
          do {
             if(solution->getPtr(trailIndex)->isStale()) {
@@ -183,4 +193,7 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
 
    }
 
+   std::cout << solution->size() << std::endl;
+
 }
+

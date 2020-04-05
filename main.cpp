@@ -20,8 +20,9 @@ void printDirections(Maze maze, Trail* solution);
 
 // Milestone #4
 Maze make_maze(const int rows, const int cols, std::string str);
-void printMazeStdout(Maze maze, int rows, int cols);
+void printMazeStdout(Maze maze, Trail* solution, int rows, int cols);
 void delete_maze(Maze maze, int rows, int cols);
+void printDirections(Maze maze, Trail* solution, int rows, int cols);
 
 int main(int argc, char** argv) {
     // THESE ARE SOME EXAMPLE FUNCTIONS TO HELP TEST YOUR CODE
@@ -55,7 +56,7 @@ int main(int argc, char** argv) {
     // delete solver;
     // delete solution;
 
-    // --------------------------MILESTONE #4--------------------------
+    // ------------------------------MILESTONE #4------------------------------
     std::string str = "";
     int rows = -1;
     int cols = 0;
@@ -78,15 +79,21 @@ int main(int argc, char** argv) {
     Maze maze;
 
     maze = make_maze(rows, cols, str);
-    printMazeStdout(maze, rows, cols);
 
-    MazeSolver* solver = new MazeSolver();
-    // Trail* solution = nullptr;
+    MazeSolver* solver = new MazeSolver(rows, cols);
     solver->solve(maze, rows, cols);
-    // solution = solver->getSolution();
-    delete_maze(maze, rows, cols);
 
-    // ------------------------MILESTONE #4 END------------------------
+    Trail* solution = nullptr;
+    solution = solver->getSolution(rows, cols);
+    printMazeStdout(maze, solution, rows, cols);
+    printDirections(maze, solution, rows, cols);
+
+    std::cout << solution->size() << std::endl;
+    delete_maze(maze, rows, cols);
+    delete solution;
+    delete solver;
+
+    // ----------------------------MILESTONE #4 END----------------------------
 
     return EXIT_SUCCESS;
 }
@@ -162,7 +169,22 @@ Maze make_maze(const int rows, const int cols, std::string str) {
     return maze;
 }
 
-void printMazeStdout(Maze maze, int rows, int cols) {
+void printMazeStdout(Maze maze, Trail* solution, int rows, int cols) {
+
+    int x = 0;
+    int y = 0;
+
+    for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
+        if (solution->getPtr(i) != nullptr) {
+            if (!solution->getPtr(i)->isStale()) {
+                x = solution->getPtr(i)->getX();
+                y = solution->getPtr(i)->getY();
+                
+                maze[y][x] = ROUTE;
+            }
+        }
+    }
+
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             std::cout << maze[i][j];
@@ -179,6 +201,16 @@ void delete_maze(Maze maze, int rows, int cols) {
         delete maze;
     }
     return;
+}
+
+void printDirections(Maze maze, Trail* solution, int rows, int cols) {
+    for (int i = 0; i < rows*cols; ++i) {
+        if (solution->getPtr(i) != nullptr) {
+            if (!solution->getPtr(i)->isStale()) {
+                std::cout << solution->getPtr(i)->getDirection() << std::endl;
+            }
+        }
+    }
 }
 
 

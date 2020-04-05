@@ -27,7 +27,13 @@ public:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+   
+   // Milestone #4 
+   MazeSolver(int rows, int cols);
+
    void solve(Maze maze, int rows, int cols);
+   
+   Trail* getSolution(int rows, int cols);
 
 private:
 

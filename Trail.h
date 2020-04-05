@@ -36,6 +36,11 @@ public:
    // Copy Constructor
    Trail(Trail& other);
 
+   // Milestone #4
+   Trail(int rows, int cols);
+
+   Trail(Trail& other, int rows, int cols);
+
 private:
    /*                                           */
    /* DO NOT MOFIFY ANY CODE IN THIS SECTION    */
@@ -43,7 +48,7 @@ private:
 
    // Trail of breadcrumb objects
    // You may assume a fixed size for M1 & M2
-   Breadcrumb* breadcrumbs[TRAIL_ARRAY_MAX_SIZE];
+   Breadcrumb** breadcrumbs;
 
    // Number of breadcrumbs currently in the trail
    int length;

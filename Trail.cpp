@@ -51,3 +51,32 @@ bool Trail::contains(int x, int y) {
    }
    return false;
 }
+
+// Milestone #4 constructor
+Trail::Trail(int rows, int cols) {
+   this->length = 0;
+   breadcrumbs = nullptr;
+   if (rows >= 0 && cols >= 0) {
+      for (int i = 0; i < (rows*cols); ++i) {
+         breadcrumbs = new Breadcrumb*[rows*cols];
+         breadcrumbs[i] = nullptr;
+      }
+   }
+}
+
+Trail::Trail(Trail& other, int rows, int cols) {
+   this->length = other.length;
+   breadcrumbs = new Breadcrumb*[rows*cols];
+   if (rows >= 0 && cols >= 0) {
+      for (int i = 0; i < rows*cols; ++i) {
+         breadcrumbs[i] = other.breadcrumbs[i];
+      }
+   }
+   // for (int i = 0; i < rows*cols; ++i) {
+   //    this->breadcrumbs[i] = nullptr;
+   //    if(other.breadcrumbs[i] != nullptr){
+   //       this->breadcrumbs[i] = new Breadcrumb(*other.breadcrumbs[i]);
+   //    }
+   // }
+ 
+}
