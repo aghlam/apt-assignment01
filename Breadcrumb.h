@@ -33,6 +33,12 @@ public:
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
 
+   // Copy Constructor
+   Breadcrumb(Breadcrumb& other);
+
+   // TESTING
+   void setX(int x);
+
 
 private:
 
@@ -47,6 +53,8 @@ private:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+
+   
 };
 
 #endif // COSC_ASS_ONE_BREADCRUMB

@@ -28,6 +28,9 @@ public:
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
 
+   // TESTING
+   Trail* returnSolution();
+
 private:
 
    /*                                           */
@@ -41,6 +44,7 @@ private:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+   Trail* solutionCopy;
 };
 
 #endif // COSC_ASS_ONE_PARTICLE_FILTER

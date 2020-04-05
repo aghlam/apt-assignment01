@@ -20,10 +20,10 @@ int main(int argc, char** argv) {
     // AS YOU WORK ON MILESTONE 2. YOU CAN UPDATE THEM YOURSELF
     // AS YOU GO ALONG.
     // COMMENT THESE OUT BEFORE YOU SUBMIT!!!
-    std::cout << "TESTING - COMMENT THE OUT TESTING BEFORE YOU SUBMIT!!!" << std::endl;
-    testBreadcrumb();
-    testTrail();
-    std::cout << "DONE TESTING" << std::endl << std::endl;
+    // std::cout << "TESTING - COMMENT THE OUT TESTING BEFORE YOU SUBMIT!!!" << std::endl;
+    // testBreadcrumb();
+    // testTrail();
+    // std::cout << "DONE TESTING" << std::endl << std::endl;
 
     // Load Maze from stdin
     Maze maze;
@@ -36,10 +36,21 @@ int main(int argc, char** argv) {
     solver->solve(maze);
     solution = solver->getSolution();
 
+    // -------------------TESTING-----------------------
+    // std::cout << solver->returnSolution()->getPtr(3)->getX() << std::endl;
+    // std::cout << solution->getPtr(3)->getX() << std::endl;
+
+    // solution->getPtr(3)->setX(7);
+    // std::cout << solver->returnSolution()->getPtr(3)->getX() << std::endl;
+    // std::cout << solution->getPtr(3)->getX() << std::endl;
+
+    //------------------END TESTING---------------------
+
     // Print Maze to stdout
     printMazeStdout(maze, solution);
 
     delete solver;
+    delete solution;
 
     return EXIT_SUCCESS;
 }
@@ -61,6 +72,23 @@ void readMazeStdin(Maze maze) {
 void printMazeStdout(Maze maze, Trail* solution) {
     // TODO
     // std::cout << "TODO" << std::endl;
+    int x = 0;
+    int y = 0;
+
+    for(int i = 0; i<TRAIL_ARRAY_MAX_SIZE; ++i) {
+        if (solution->getPtr(i) != nullptr) {
+            if(!solution->getPtr(i)->isStale()) {
+                x = solution->getPtr(i)->getX();
+                y = solution->getPtr(i)->getY();
+                
+                maze[y][x] = ROUTE;
+
+            }
+            // Get breadcrumb coords
+
+        }
+    }
+
     for(int i=0; i< MAZE_DIM; ++i) {
         for(int j=0; j< MAZE_DIM; ++j) {
             std::cout << maze[i][j];

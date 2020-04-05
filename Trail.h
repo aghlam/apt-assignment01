@@ -33,6 +33,9 @@ public:
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
 
+   // Copy Constructor
+   Trail(Trail& other);
+
 private:
    /*                                           */
    /* DO NOT MOFIFY ANY CODE IN THIS SECTION    */

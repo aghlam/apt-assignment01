@@ -27,20 +27,20 @@ void MazeSolver::solve(Maze maze) {
       }
    }
 
-   Breadcrumb* bc = new Breadcrumb(x, y, false);
-   solution->addCopy(bc);
-   Breadcrumb* test = new Breadcrumb(12, 6, false);
-   solution->addCopy(test);
+   // Breadcrumb* bc = new Breadcrumb(x, y, false);
+   // solution->addCopy(bc);
+   // Breadcrumb* test = new Breadcrumb(12, 6, false);
+   // solution->addCopy(test);
    
 
-   std::cout << "Current location: " << maze[y][x] << std::endl;
+   // std::cout << "Current location: " << maze[y][x] << std::endl;
 
    while(notE) {
 
-      std::cout << "Current breadcrumb start of loop: (" 
-                << x 
-                << ", " << y
-                << ")" << std::endl;
+      // std::cout << "Current breadcrumb start of loop: (" 
+      //           << x 
+      //           << ", " << y
+      //           << ")" << std::endl;
 
       // Look NORTH
       if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      // Is it open AND is there a breadcrumb?
@@ -90,7 +90,7 @@ void MazeSolver::solve(Maze maze) {
       }
 
       if ((maze[y-1][x])=='E' || (maze[y][x+1])=='E' || (maze[y+1][x])=='E' || (maze[y][x-1])=='E') {
-         std::cout << "Found E" << std::endl;
+         // std::cout << "Found E" << std::endl;
          notE = false;
       }
 
@@ -100,5 +100,13 @@ void MazeSolver::solve(Maze maze) {
 
 Trail* MazeSolver::getSolution() {
    // TODO
-   return nullptr;
+   solutionCopy = new Trail(*solution);
+   return solutionCopy;
 }
+
+
+// TESTING
+
+Trail* MazeSolver::returnSolution() {
+      return solution;
+   }
