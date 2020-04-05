@@ -28,9 +28,6 @@ public:
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
 
-   // TESTING
-   Trail* returnSolution();
-
 private:
 
    /*                                           */

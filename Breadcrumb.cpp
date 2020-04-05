@@ -22,7 +22,7 @@ Breadcrumb::Breadcrumb(Breadcrumb& other) :
 }
 
 Breadcrumb::~Breadcrumb() {
-   // TODO
+   
 }
 
 int Breadcrumb::getX() {
@@ -39,10 +39,4 @@ bool Breadcrumb::isStale() {
 
 void Breadcrumb::setStale(bool stale) {
    this->stale = stale;
-}
-
-// TESTING
-
-void Breadcrumb::setX(int x) {
-      this->x = x;
 }

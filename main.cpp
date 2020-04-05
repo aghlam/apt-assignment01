@@ -36,16 +36,6 @@ int main(int argc, char** argv) {
     solver->solve(maze);
     solution = solver->getSolution();
 
-    // -------------------TESTING-----------------------
-    // std::cout << solver->returnSolution()->getPtr(3)->getX() << std::endl;
-    // std::cout << solution->getPtr(3)->getX() << std::endl;
-
-    // solution->getPtr(3)->setX(7);
-    // std::cout << solver->returnSolution()->getPtr(3)->getX() << std::endl;
-    // std::cout << solution->getPtr(3)->getX() << std::endl;
-
-    //------------------END TESTING---------------------
-
     // Print Maze to stdout
     printMazeStdout(maze, solution);
 
@@ -57,8 +47,6 @@ int main(int argc, char** argv) {
 
 void readMazeStdin(Maze maze) {
     // ASSUME THE MAZE IS A FIXED SIZE (20X20).
-
-    // TODO
     if(std::cin.good()) {
         for(int i=0; i< MAZE_DIM; ++i) {
             for(int j=0; j< MAZE_DIM; ++j) {
@@ -70,8 +58,6 @@ void readMazeStdin(Maze maze) {
 
 
 void printMazeStdout(Maze maze, Trail* solution) {
-    // TODO
-    // std::cout << "TODO" << std::endl;
     int x = 0;
     int y = 0;
 
@@ -82,10 +68,7 @@ void printMazeStdout(Maze maze, Trail* solution) {
                 y = solution->getPtr(i)->getY();
                 
                 maze[y][x] = ROUTE;
-
             }
-            // Get breadcrumb coords
-
         }
     }
 

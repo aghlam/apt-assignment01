@@ -13,10 +13,7 @@ Trail::Trail(Trail& other) {
    this->length = other.length;
 
    for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
-
       this->breadcrumbs[i] = nullptr;
-   }
-   for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
       if(other.breadcrumbs[i] != nullptr){
          this->breadcrumbs[i] = new Breadcrumb(*other.breadcrumbs[i]);
       }
@@ -25,7 +22,6 @@ Trail::Trail(Trail& other) {
 }
 
 Trail::~Trail() {
-   // TODO
    for(int i = 0; i < length; ++i) {
       if(breadcrumbs[i] != nullptr){
          delete breadcrumbs[i];

@@ -36,10 +36,6 @@ public:
    // Copy Constructor
    Breadcrumb(Breadcrumb& other);
 
-   // TESTING
-   void setX(int x);
-
-
 private:
 
    /*                                           */
