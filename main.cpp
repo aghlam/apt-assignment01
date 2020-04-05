@@ -15,8 +15,13 @@ void readMazeStdin(Maze maze);
 // Print out a Maze to standard output.
 void printMazeStdout(Maze maze, Trail* solution);
 
-// Mileston #3 - Print out directions
+// Milestone #3 - Print out directions
 void printDirections(Maze maze, Trail* solution);
+
+// Milestone #4
+Maze make_maze(const int rows, const int cols, std::string str);
+void printMazeStdout(Maze maze, int rows, int cols);
+void delete_maze(Maze maze, int rows, int cols);
 
 int main(int argc, char** argv) {
     // THESE ARE SOME EXAMPLE FUNCTIONS TO HELP TEST YOUR CODE
@@ -27,28 +32,61 @@ int main(int argc, char** argv) {
     // testBreadcrumb();
     // testTrail();
     // std::cout << "DONE TESTING" << std::endl << std::endl;
+    
+    // // Load Maze from stdin
+    // Maze maze;
+    // readMazeStdin(maze);
 
-    // Load Maze from stdin
+    // // Solve using MazeSolver
+    // // THIS WILL ONLY WORK IF YOU'VE FINISHED MILESTONE 2
+    // MazeSolver* solver = new MazeSolver();
+    // Trail* solution = nullptr;
+    // solver->solve(maze);
+    // solution = solver->getSolution();
+
+    // // Print Maze to stdout
+    // printMazeStdout(maze, solution);
+
+    // std::cout << std::endl;
+
+    // // Milestone #3 - Print directions to stdout
+    // printDirections(maze, solution);
+
+    // delete solver;
+    // delete solution;
+
+    // --------------------------MILESTONE #4--------------------------
+    std::string str = "";
+    int rows = -1;
+    int cols = 0;
+
+    if (std::cin.good()) {
+        char c;
+        while (!std::cin.eof()) {
+            std::cin.get(c);
+            if (c == OPEN || c == 'S' || c == 'E' || c == WALL) {
+                str += c;
+            }
+            if (c == '\n') {
+                rows++;
+            }
+        }
+    }
+
+    cols = str.length()/rows;
+
     Maze maze;
-    readMazeStdin(maze);
 
-    // Solve using MazeSolver
-    // THIS WILL ONLY WORK IF YOU'VE FINISHED MILESTONE 2
+    maze = make_maze(rows, cols, str);
+    printMazeStdout(maze, rows, cols);
+
     MazeSolver* solver = new MazeSolver();
-    Trail* solution = nullptr;
-    solver->solve(maze);
-    solution = solver->getSolution();
+    // Trail* solution = nullptr;
+    solver->solve(maze, rows, cols);
+    // solution = solver->getSolution();
+    delete_maze(maze, rows, cols);
 
-    // Print Maze to stdout
-    printMazeStdout(maze, solution);
-
-    std::cout << std::endl;
-
-    // Milestone #3 - Print directions to stdout
-    printDirections(maze, solution);
-
-    delete solver;
-    delete solution;
+    // ------------------------MILESTONE #4 END------------------------
 
     return EXIT_SUCCESS;
 }
@@ -91,7 +129,6 @@ void printMazeStdout(Maze maze, Trail* solution) {
 
 // Milestone #3
 void printDirections(Maze maze, Trail* solution) {
-
     for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
         if (solution->getPtr(i) != nullptr) {
             if (!solution->getPtr(i)->isStale()) {
@@ -99,9 +136,53 @@ void printDirections(Maze maze, Trail* solution) {
             }
         }
     }
-
 }
 
+// Milestone #4
+Maze make_maze(const int rows, const int cols, std::string str) {
+    Maze maze = nullptr;
+    int length = str.length();
+    int s = 0;
+
+    if (rows >= 0 && cols >= 0) {
+        maze = new char*[rows];
+        for (int i = 0; i != rows; ++i) {
+            maze[i] = new char[cols];
+        }
+    }
+
+    while(s<length) {
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                maze[i][j] = str[s];
+                s++;
+            }
+        }
+    }
+    return maze;
+}
+
+void printMazeStdout(Maze maze, int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << maze[i][j];
+        }
+        std::cout << std::endl;
+    }
+}
+
+void delete_maze(Maze maze, int rows, int cols) {
+    if (rows >= 0 && cols >= 0) {
+        for (int i = 0; i != rows; ++i) {
+            delete maze[i];
+        }
+        delete maze;
+    }
+    return;
+}
+
+
+// Initial tests
 void testBreadcrumb() {
     std::cout << "TESTING BREADCRUMB" << std::endl;
 

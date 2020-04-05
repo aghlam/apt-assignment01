@@ -27,6 +27,7 @@ public:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+   void solve(Maze maze, int rows, int cols);
 
 private:
 
