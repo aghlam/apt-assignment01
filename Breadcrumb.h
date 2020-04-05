@@ -5,6 +5,7 @@
 #include "Types.h"
 
 #include <iostream>
+#include <string>
 
 class Breadcrumb {
 public:
@@ -36,6 +37,12 @@ public:
    // Copy Constructor
    Breadcrumb(Breadcrumb& other);
 
+   // Milestone #3
+
+   void setDirection(std::string direction);
+
+   std::string getDirection();
+
 private:
 
    /*                                           */
@@ -49,6 +56,9 @@ private:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+
+   // Milestone #3
+   std::string direction;
 
    
 };

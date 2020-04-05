@@ -15,6 +15,9 @@ void readMazeStdin(Maze maze);
 // Print out a Maze to standard output.
 void printMazeStdout(Maze maze, Trail* solution);
 
+// Mileston #3 - Print out directions
+void printDirections(Maze maze, Trail* solution);
+
 int main(int argc, char** argv) {
     // THESE ARE SOME EXAMPLE FUNCTIONS TO HELP TEST YOUR CODE
     // AS YOU WORK ON MILESTONE 2. YOU CAN UPDATE THEM YOURSELF
@@ -39,6 +42,11 @@ int main(int argc, char** argv) {
     // Print Maze to stdout
     printMazeStdout(maze, solution);
 
+    std::cout << std::endl;
+
+    // Milestone #3 - Print directions to stdout
+    printDirections(maze, solution);
+
     delete solver;
     delete solution;
 
@@ -47,9 +55,9 @@ int main(int argc, char** argv) {
 
 void readMazeStdin(Maze maze) {
     // ASSUME THE MAZE IS A FIXED SIZE (20X20).
-    if(std::cin.good()) {
-        for(int i=0; i< MAZE_DIM; ++i) {
-            for(int j=0; j< MAZE_DIM; ++j) {
+    if (std::cin.good()) {
+        for (int i = 0; i < MAZE_DIM; ++i) {
+            for (int j = 0; j < MAZE_DIM; ++j) {
                 std::cin >> maze[i][j];
             }
         }
@@ -61,9 +69,9 @@ void printMazeStdout(Maze maze, Trail* solution) {
     int x = 0;
     int y = 0;
 
-    for(int i = 0; i<TRAIL_ARRAY_MAX_SIZE; ++i) {
+    for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
         if (solution->getPtr(i) != nullptr) {
-            if(!solution->getPtr(i)->isStale()) {
+            if (!solution->getPtr(i)->isStale()) {
                 x = solution->getPtr(i)->getX();
                 y = solution->getPtr(i)->getY();
                 
@@ -72,13 +80,26 @@ void printMazeStdout(Maze maze, Trail* solution) {
         }
     }
 
-    for(int i=0; i< MAZE_DIM; ++i) {
-        for(int j=0; j< MAZE_DIM; ++j) {
+    for (int i = 0; i < MAZE_DIM; ++i) {
+        for (int j = 0; j < MAZE_DIM; ++j) {
             std::cout << maze[i][j];
             }
         std::cout << std::endl;
     }
     
+}
+
+// Milestone #3
+void printDirections(Maze maze, Trail* solution) {
+
+    for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
+        if (solution->getPtr(i) != nullptr) {
+            if (!solution->getPtr(i)->isStale()) {
+                std::cout << solution->getPtr(i)->getDirection() << std::endl;
+            }
+        }
+    }
+
 }
 
 void testBreadcrumb() {

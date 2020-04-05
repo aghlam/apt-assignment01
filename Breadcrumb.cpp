@@ -6,13 +6,14 @@ Breadcrumb::Breadcrumb(int x, int y, bool stale):
    y(y),
    stale(stale)
 {
-
+   this->direction = "no direction";
 }
 
 Breadcrumb::Breadcrumb(Breadcrumb& other) :
    x(other.x),
    y(other.y),
-   stale(other.stale)
+   stale(other.stale),
+   direction(other.direction)
 {
 
 }
@@ -35,4 +36,14 @@ bool Breadcrumb::isStale() {
 
 void Breadcrumb::setStale(bool stale) {
    this->stale = stale;
+}
+
+// Milestone #3
+
+void Breadcrumb::setDirection(std::string direction) {
+   this->direction = direction;
+}
+
+std::string Breadcrumb::getDirection() {
+   return direction;
 }

@@ -37,7 +37,8 @@ void MazeSolver::solve(Maze maze) {
       // Look NORTH
       if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      // Is it open AND is there a breadcrumb?
          y--;                                                        // Move NORTH
-         Breadcrumb* bc = new Breadcrumb(x, y, false);               // Create breadcrumb at coordinates
+         Breadcrumb* bc = new Breadcrumb(x, y, false);
+         bc->setDirection("north");               // Create breadcrumb at coordinates
          solution->addCopy(bc);                                      // Add to trail
          trailIndex = solution->size()-1;                            // Set non stale breadcrumb index
       }
@@ -45,6 +46,7 @@ void MazeSolver::solve(Maze maze) {
       else if(maze[y][x+1] == OPEN && !solution->contains(x+1, y)) { 
          x++;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
+         bc->setDirection("east"); 
          solution->addCopy(bc);
          trailIndex = solution->size()-1;
       }
@@ -52,6 +54,7 @@ void MazeSolver::solve(Maze maze) {
       else if(maze[y+1][x] == OPEN && !solution->contains(x, y+1)) {
          y++;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
+         bc->setDirection("south"); 
          solution->addCopy(bc);
          trailIndex = solution->size()-1;
       } 
@@ -59,6 +62,7 @@ void MazeSolver::solve(Maze maze) {
       else if(maze[y][x-1] == OPEN && !solution->contains(x-1, y)) {
          x--;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
+         bc->setDirection("west"); 
          solution->addCopy(bc);
          trailIndex = solution->size()-1;
       }
