@@ -48,7 +48,7 @@ private:
 
    // Trail of breadcrumb objects
    // You may assume a fixed size for M1 & M2
-   Breadcrumb** breadcrumbs;
+   // Breadcrumb* breadcrumbs[TRAIL_ARRAY_MAX_SIZE];
 
    // Number of breadcrumbs currently in the trail
    int length;
@@ -57,6 +57,8 @@ private:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+   // Milestone #4
+   Breadcrumb** breadcrumbs;
 };
 
 #endif // COSC_ASS_ONE_TRAIL

@@ -18,7 +18,7 @@ void printMazeStdout(Maze maze, Trail* solution);
 // Milestone #3 - Print out directions
 void printDirections(Maze maze, Trail* solution);
 
-// Milestone #4
+// Milestone #4 - Same functions as above but included parameters for rows and cols
 Maze make_maze(const int rows, const int cols, std::string str);
 void printMazeStdout(Maze maze, Trail* solution, int rows, int cols);
 void delete_maze(Maze maze, int rows, int cols);
@@ -34,6 +34,8 @@ int main(int argc, char** argv) {
     // testTrail();
     // std::cout << "DONE TESTING" << std::endl << std::endl;
     
+
+    // ------------------------------MILESTONE #2------------------------------
     // // Load Maze from stdin
     // Maze maze;
     // readMazeStdin(maze);
@@ -55,12 +57,19 @@ int main(int argc, char** argv) {
 
     // delete solver;
     // delete solution;
+    // ----------------------------MILESTONE #2 END----------------------------
 
     // ------------------------------MILESTONE #4------------------------------
     std::string str = "";
     int rows = -1;
     int cols = 0;
 
+    /*
+        Read from standard input and determine the size of the maze. This is 
+        done by counting the number of elements and appending them to a string. 
+        The number of '\n' are counted to create the number of rows and the 
+        string length is then divided by the rows to obtain the number of columns.
+    */
     if (std::cin.good()) {
         char c;
         while (!std::cin.eof()) {
@@ -73,15 +82,10 @@ int main(int argc, char** argv) {
             }
         }
     }
-
+    
     cols = str.length()/rows;
 
-    // std::cout << "String: " << str << std::endl;
-    // std::cout << "Rows: " << rows << std::endl;
-    // std::cout << "Cols: " << cols << std::endl;
-
     Maze maze;
-
     maze = make_maze(rows, cols, str);
 
     MazeSolver* solver = new MazeSolver(rows, cols);
@@ -89,20 +93,20 @@ int main(int argc, char** argv) {
 
     Trail* solution = nullptr;
     solution = solver->getSolution(rows, cols);
-    // std::cout << solution->size() << std::endl;
 
     printMazeStdout(maze, solution, rows, cols);
     std::cout << std::endl;
     printDirections(maze, solution, rows, cols);
 
     delete_maze(maze, rows, cols);
-    delete solution;
     delete solver;
+    delete solution;
 
     // ----------------------------MILESTONE #4 END----------------------------
 
     return EXIT_SUCCESS;
 }
+
 
 void readMazeStdin(Maze maze) {
     // ASSUME THE MAZE IS A FIXED SIZE (20X20).
@@ -114,7 +118,6 @@ void readMazeStdin(Maze maze) {
         }
     }
 }
-
 
 void printMazeStdout(Maze maze, Trail* solution) {
     int x = 0;
@@ -140,6 +143,7 @@ void printMazeStdout(Maze maze, Trail* solution) {
     
 }
 
+
 // Milestone #3
 void printDirections(Maze maze, Trail* solution) {
     for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
@@ -150,6 +154,7 @@ void printDirections(Maze maze, Trail* solution) {
         }
     }
 }
+
 
 // Milestone #4
 Maze make_maze(const int rows, const int cols, std::string str) {

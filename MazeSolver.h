@@ -28,11 +28,13 @@ public:
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
    
-   // Milestone #4 
+   // Milestone #4 - Constructor
    MazeSolver(int rows, int cols);
 
+   // Milestone #4 - solve method
    void solve(Maze maze, int rows, int cols);
    
+   // Milestone #4 - Deep copy of solution
    Trail* getSolution(int rows, int cols);
 
 private:

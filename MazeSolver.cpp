@@ -9,7 +9,10 @@ MazeSolver::MazeSolver() {
 MazeSolver::~MazeSolver() {
    delete solution;
 }
-
+/*
+   The solve method which takes in the input maze and solves it following the 
+   Tremaux algorithm. 
+*/
 void MazeSolver::solve(Maze maze) {
    // Coordinates, 
    int x = 0;
@@ -17,7 +20,7 @@ void MazeSolver::solve(Maze maze) {
    int trailIndex = 0;
    bool notE = true;
 
-   // Find starting point 'S' and adding first breadcrumb
+   // Find starting point 'S'
    for(int i = 0; i < MAZE_DIM; ++i) {
       for(int j = 0; j < MAZE_DIM; ++j) {
          if(maze[i][j] == 'S') {
@@ -28,13 +31,7 @@ void MazeSolver::solve(Maze maze) {
    }
 
    while(notE) {
-
-      // std::cout << "Current breadcrumb start of loop: (" 
-      //           << x 
-      //           << ", " << y
-      //           << ")" << std::endl;
-
-      // Look NORTH as long as y is not 0
+      // Look NORTH! - as long as Y is not 0
       if(y != 0 && maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {
          y--;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
@@ -42,7 +39,7 @@ void MazeSolver::solve(Maze maze) {
          solution->addCopy(bc);
          trailIndex = solution->size()-1;
       }
-      // Look EAST
+      // Look EAST!
       else if(maze[y][x+1] == OPEN && !solution->contains(x+1, y)) { 
          x++;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
@@ -50,7 +47,7 @@ void MazeSolver::solve(Maze maze) {
          solution->addCopy(bc);
          trailIndex = solution->size()-1;
       }
-      // Look SOUTH
+      // Look SOUTH!
       else if(maze[y+1][x] == OPEN && !solution->contains(x, y+1)) {
          y++;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
@@ -58,7 +55,7 @@ void MazeSolver::solve(Maze maze) {
          solution->addCopy(bc);
          trailIndex = solution->size()-1;
       } 
-      // Look WEST
+      // Look WEST!
       else if(maze[y][x-1] == OPEN && !solution->contains(x-1, y)) {
          x--;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
@@ -80,18 +77,14 @@ void MazeSolver::solve(Maze maze) {
                y = solution->getPtr(trailIndex)->getY();
                looking = false;
             }
-
          } while (looking);
-
       }
-
+      // Found E!
       if ((maze[y-1][x])=='E' || (maze[y][x+1])=='E' 
             || (maze[y+1][x])=='E' || (maze[y][x-1])=='E') {
          notE = false;
       }
-
    }
-
 }
 
 Trail* MazeSolver::getSolution() {
@@ -99,7 +92,9 @@ Trail* MazeSolver::getSolution() {
    return solutionCopy;
 }
 
-// Milestone #4 Constructor
+
+// Milestone #4 Code
+
 MazeSolver::MazeSolver(int rows, int cols) {
    this->solution = new Trail(rows, cols);
 }
@@ -109,7 +104,10 @@ Trail* MazeSolver::getSolution(int rows, int cols) {
    return solutionCopy;
 }
 
-// Milestone #4 solver
+/*
+   Milestone #4 solve - This is essentially the same as the above solve method 
+   modified to include parameters for the dynamic maze size.
+*/
 void MazeSolver::solve(Maze maze, int rows, int cols) {
    // Coordinates, 
    int x = 0;
@@ -117,26 +115,18 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
    int trailIndex = 0;
    bool notE = true;
 
-   // Find starting point 'S' and adding first breadcrumb
+   // Find starting point 'S'
    for(int i = 0; i < rows; ++i) {
       for(int j = 0; j < cols; ++j) {
          if(maze[i][j] == 'S') {
             x = j;
             y = i;
-            // std::cout << "x: " << x << std::endl;
-            // std::cout << "y: " << y << std::endl;
          }
       }
    }
 
    while(notE) {
-
-      std::cout << "Current breadcrumb start of loop: (" 
-                << x 
-                << ", " << y
-                << ")" << std::endl;
-
-      // Look NORTH
+      // Look NORTH! - as long as Y is not 0
       if(y != 0 && maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      
          y--;                                                        
          Breadcrumb* bc = new Breadcrumb(x, y, false);
@@ -182,18 +172,13 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
                y = solution->getPtr(trailIndex)->getY();
                looking = false;
             }
-
          } while (looking);
-
       }
-
-      if ((maze[y-1][x])=='E' || (maze[y][x+1])=='E' || (maze[y+1][x])=='E' || (maze[y][x-1])=='E') {
+      //Found E!
+      if ((maze[y-1][x])=='E' || (maze[y][x+1])=='E' 
+            || (maze[y+1][x])=='E' || (maze[y][x-1])=='E') {
          notE = false;
       }
-
    }
-
-   // std::cout << solution->size() << std::endl;
-
 }
 

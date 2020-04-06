@@ -14,6 +14,8 @@
 // REMEMBER: in a maze, the location (x,y) is found by maze[y][x]!
 
 // typedef char Maze[MAZE_DIM][MAZE_DIM];
+
+// Milestone #4
 typedef char** Maze;
 
 

@@ -11,14 +11,12 @@ Trail::Trail() {
 
 Trail::Trail(Trail& other) {
    this->length = other.length;
-
    for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
       this->breadcrumbs[i] = nullptr;
-      if(other.breadcrumbs[i] != nullptr){
+      if(other.breadcrumbs[i] != nullptr) {
          this->breadcrumbs[i] = new Breadcrumb(*other.breadcrumbs[i]);
       }
    }
-
 }
 
 Trail::~Trail() {
@@ -52,6 +50,7 @@ bool Trail::contains(int x, int y) {
    return false;
 }
 
+
 // Milestone #4 Code
 
 Trail::Trail(int rows, int cols) {
@@ -73,11 +72,4 @@ Trail::Trail(Trail& other, int rows, int cols) {
          breadcrumbs[i] = other.breadcrumbs[i];
       }
    }
-   // for (int i = 0; i < rows*cols; ++i) {
-   //    this->breadcrumbs[i] = nullptr;
-   //    if(other.breadcrumbs[i] != nullptr){
-   //       this->breadcrumbs[i] = new Breadcrumb(*other.breadcrumbs[i]);
-   //    }
-   // }
- 
 }
