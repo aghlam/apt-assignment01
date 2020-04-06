@@ -1,3 +1,4 @@
+// Alan Lam s3436174
 
 #include "Breadcrumb.h"
 
@@ -38,7 +39,7 @@ void Breadcrumb::setStale(bool stale) {
    this->stale = stale;
 }
 
-// Milestone #3
+// Milestone #3 Code
 
 void Breadcrumb::setDirection(std::string direction) {
    this->direction = direction;

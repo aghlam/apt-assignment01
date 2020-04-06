@@ -1,3 +1,4 @@
+// Alan Lam s3436174
 
 #ifndef COSC_ASS_ONE_BREADCRUMB
 #define COSC_ASS_ONE_BREADCRUMB
@@ -37,10 +38,10 @@ public:
    // Copy Constructor
    Breadcrumb(Breadcrumb& other);
 
-   // Milestone #3
-
+   // Milestone #3 - Set the direction moved
    void setDirection(std::string direction);
 
+   // Milestone #3 - Return direction
    std::string getDirection();
 
 private:
@@ -59,7 +60,6 @@ private:
 
    // Milestone #3
    std::string direction;
-
    
 };
 

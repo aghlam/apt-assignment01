@@ -1,3 +1,4 @@
+// Alan Lam s3436174
 
 #ifndef COSC_ASS_ONE_PARTICLE_FILTER
 #define COSC_ASS_ONE_PARTICLE_FILTER
@@ -27,6 +28,15 @@ public:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+   
+   // Milestone #4 - Constructor
+   MazeSolver(int rows, int cols);
+
+   // Milestone #4 - solve method
+   void solve(Maze maze, int rows, int cols);
+   
+   // Milestone #4 - Deep copy of solution
+   Trail* getSolution(int rows, int cols);
 
 private:
 

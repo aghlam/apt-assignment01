@@ -1,3 +1,4 @@
+// Alan Lam s3436174
 
 #ifndef COSC_ASS_ONE_TRAIL
 #define COSC_ASS_ONE_TRAIL
@@ -11,7 +12,6 @@ public:
    /*                                           */
    /* DO NOT MOFIFY ANY CODE IN THIS SECTION    */
    /*                                           */
-
 
    // Constructor/Desctructor.
    Trail();
@@ -36,6 +36,12 @@ public:
    // Copy Constructor
    Trail(Trail& other);
 
+   // Milestone #4 - Constructor
+   Trail(int rows, int cols);
+
+   // Milestone #4 - Copy Constructor
+   Trail(Trail& other, int rows, int cols);
+
 private:
    /*                                           */
    /* DO NOT MOFIFY ANY CODE IN THIS SECTION    */
@@ -43,7 +49,7 @@ private:
 
    // Trail of breadcrumb objects
    // You may assume a fixed size for M1 & M2
-   Breadcrumb* breadcrumbs[TRAIL_ARRAY_MAX_SIZE];
+   // Breadcrumb* breadcrumbs[TRAIL_ARRAY_MAX_SIZE];
 
    // Number of breadcrumbs currently in the trail
    int length;
@@ -52,6 +58,8 @@ private:
    /*                                           */
    /* YOU MAY ADD YOUR MODIFICATIONS HERE       */
    /*                                           */
+   // Milestone #4
+   Breadcrumb** breadcrumbs;
 };
 
 #endif // COSC_ASS_ONE_TRAIL
