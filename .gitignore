@@ -2,3 +2,7 @@
 assign1
 actual.out
 sample01.maze
+*.out
+*.maze
+sampleTest/
+MazeTests/
