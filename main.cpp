@@ -54,8 +54,10 @@
     by following the code and seeing what method was called and which required 
     passing on the new dimensions.
 
+
+    ****
     To get milestone #2 code working - have to comment out all milestone #4 code
-    
+    ****
 */
 
 #include <iostream>
