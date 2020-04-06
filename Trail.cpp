@@ -5,7 +5,7 @@
 Trail::Trail() {
    this->length = 0;
    for(int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
-      breadcrumbs[i] = nullptr;
+      this->breadcrumbs[i] = nullptr;
    }
 }
 
@@ -52,7 +52,8 @@ bool Trail::contains(int x, int y) {
    return false;
 }
 
-// Milestone #4 constructor
+// Milestone #4 Code
+
 Trail::Trail(int rows, int cols) {
    this->length = 0;
    breadcrumbs = nullptr;

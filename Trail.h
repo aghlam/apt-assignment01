@@ -12,7 +12,6 @@ public:
    /* DO NOT MOFIFY ANY CODE IN THIS SECTION    */
    /*                                           */
 
-
    // Constructor/Desctructor.
    Trail();
    ~Trail();
@@ -36,9 +35,10 @@ public:
    // Copy Constructor
    Trail(Trail& other);
 
-   // Milestone #4
+   // Milestone #4 - Constructor
    Trail(int rows, int cols);
 
+   // Milestone #4 - Copy Constructor
    Trail(Trail& other, int rows, int cols);
 
 private:
