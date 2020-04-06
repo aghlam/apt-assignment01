@@ -76,6 +76,10 @@ int main(int argc, char** argv) {
 
     cols = str.length()/rows;
 
+    // std::cout << "String: " << str << std::endl;
+    // std::cout << "Rows: " << rows << std::endl;
+    // std::cout << "Cols: " << cols << std::endl;
+
     Maze maze;
 
     maze = make_maze(rows, cols, str);
@@ -85,6 +89,8 @@ int main(int argc, char** argv) {
 
     Trail* solution = nullptr;
     solution = solver->getSolution(rows, cols);
+    // std::cout << solution->size() << std::endl;
+
     printMazeStdout(maze, solution, rows, cols);
     std::cout << std::endl;
     printDirections(maze, solution, rows, cols);
@@ -174,7 +180,7 @@ void printMazeStdout(Maze maze, Trail* solution, int rows, int cols) {
     int x = 0;
     int y = 0;
 
-    for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
+    for (int i = 0; i < rows*cols; ++i) {
         if (solution->getPtr(i) != nullptr) {
             if (!solution->getPtr(i)->isStale()) {
                 x = solution->getPtr(i)->getX();

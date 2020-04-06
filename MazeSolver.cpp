@@ -34,8 +34,8 @@ void MazeSolver::solve(Maze maze) {
       //           << ", " << y
       //           << ")" << std::endl;
 
-      // Look NORTH
-      if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {
+      // Look NORTH as long as y is not 0
+      if(y != 0 && maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {
          y--;
          Breadcrumb* bc = new Breadcrumb(x, y, false);
          bc->setDirection("north");
@@ -131,13 +131,13 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
 
    while(notE) {
 
-      // std::cout << "Current breadcrumb start of loop: (" 
-      //           << x 
-      //           << ", " << y
-      //           << ")" << std::endl;
+      std::cout << "Current breadcrumb start of loop: (" 
+                << x 
+                << ", " << y
+                << ")" << std::endl;
 
       // Look NORTH
-      if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      
+      if(y != 0 && maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      
          y--;                                                        
          Breadcrumb* bc = new Breadcrumb(x, y, false);
          bc->setDirection("north");              
