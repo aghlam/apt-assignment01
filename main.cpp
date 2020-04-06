@@ -86,9 +86,9 @@ int main(int argc, char** argv) {
     Trail* solution = nullptr;
     solution = solver->getSolution(rows, cols);
     printMazeStdout(maze, solution, rows, cols);
+    std::cout << std::endl;
     printDirections(maze, solution, rows, cols);
 
-    std::cout << solution->size() << std::endl;
     delete_maze(maze, rows, cols);
     delete solution;
     delete solver;

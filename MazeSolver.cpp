@@ -123,18 +123,18 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
          if(maze[i][j] == 'S') {
             x = j;
             y = i;
-            std::cout << "x: " << x << std::endl;
-            std::cout << "y: " << y << std::endl;
+            // std::cout << "x: " << x << std::endl;
+            // std::cout << "y: " << y << std::endl;
          }
       }
    }
 
    while(notE) {
 
-      std::cout << "Current breadcrumb start of loop: (" 
-                << x 
-                << ", " << y
-                << ")" << std::endl;
+      // std::cout << "Current breadcrumb start of loop: (" 
+      //           << x 
+      //           << ", " << y
+      //           << ")" << std::endl;
 
       // Look NORTH
       if(maze[y-1][x] == OPEN && !solution->contains(x, y-1)) {      
@@ -193,7 +193,7 @@ void MazeSolver::solve(Maze maze, int rows, int cols) {
 
    }
 
-   std::cout << solution->size() << std::endl;
+   // std::cout << solution->size() << std::endl;
 
 }
 
