@@ -1,3 +1,6 @@
+/*
+    
+*/
 
 #include <iostream>
 #include <string>
@@ -85,15 +88,16 @@ int main(int argc, char** argv) {
     
     cols = str.length()/rows;
 
+    // Create maze
     Maze maze;
     maze = make_maze(rows, cols, str);
-
+    // Solve maze
     MazeSolver* solver = new MazeSolver(rows, cols);
     solver->solve(maze, rows, cols);
-
+    // Obtain copy of solution trail
     Trail* solution = nullptr;
     solution = solver->getSolution(rows, cols);
-
+    // Print out maze with solution and directions
     printMazeStdout(maze, solution, rows, cols);
     std::cout << std::endl;
     printDirections(maze, solution, rows, cols);
@@ -122,7 +126,7 @@ void readMazeStdin(Maze maze) {
 void printMazeStdout(Maze maze, Trail* solution) {
     int x = 0;
     int y = 0;
-
+    // Change to * for all non-stale breadcrumbs at coordinates x, y
     for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
         if (solution->getPtr(i) != nullptr) {
             if (!solution->getPtr(i)->isStale()) {
@@ -133,7 +137,7 @@ void printMazeStdout(Maze maze, Trail* solution) {
             }
         }
     }
-
+    // Prints out maze with solution trail
     for (int i = 0; i < MAZE_DIM; ++i) {
         for (int j = 0; j < MAZE_DIM; ++j) {
             std::cout << maze[i][j];
@@ -145,6 +149,7 @@ void printMazeStdout(Maze maze, Trail* solution) {
 
 
 // Milestone #3
+// Prints out directions stored with the non-stale breadcrumbs
 void printDirections(Maze maze, Trail* solution) {
     for (int i = 0; i < TRAIL_ARRAY_MAX_SIZE; ++i) {
         if (solution->getPtr(i) != nullptr) {
@@ -157,18 +162,24 @@ void printDirections(Maze maze, Trail* solution) {
 
 
 // Milestone #4
+
+/*
+    Creates maze according to the rows and cols parameters. Inputs each character 
+    of the string into array to create the maze
+*/
 Maze make_maze(const int rows, const int cols, std::string str) {
     Maze maze = nullptr;
     int length = str.length();
+    // Varibale to keep track of str index
     int s = 0;
-
+    // Dynamic maze dimension creation - (It's magic!)
     if (rows >= 0 && cols >= 0) {
         maze = new char*[rows];
         for (int i = 0; i != rows; ++i) {
             maze[i] = new char[cols];
         }
     }
-
+    // Cycles through the string by each character and inputs into the maze array
     while(s<length) {
         for (int i = 0; i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
@@ -180,6 +191,7 @@ Maze make_maze(const int rows, const int cols, std::string str) {
     return maze;
 }
 
+// Same as standard print method but with the dynamic maze parameters
 void printMazeStdout(Maze maze, Trail* solution, int rows, int cols) {
 
     int x = 0;
@@ -214,6 +226,7 @@ void delete_maze(Maze maze, int rows, int cols) {
     return;
 }
 
+// Same as standard printDirections method but with dynamic maze parameters
 void printDirections(Maze maze, Trail* solution, int rows, int cols) {
     for (int i = 0; i < rows*cols; ++i) {
         if (solution->getPtr(i) != nullptr) {

@@ -28,6 +28,7 @@ Trail::~Trail() {
    }
 }
 
+// Return length of trail
 int Trail::size() {
    return length;
 }
@@ -36,11 +37,13 @@ Breadcrumb* Trail::getPtr(int i) {
    return breadcrumbs[i];
 }
 
+// Adds a breadcrumb object to the trail array, adds to length size
 void Trail::addCopy(Breadcrumb* t) {
    breadcrumbs[length] = t;
    length++;
 }
 
+// Check to see if there is a breadcrumb at coordinates x, y
 bool Trail::contains(int x, int y) {
    for(int i = 0; i < length; i++) {
       if(breadcrumbs[i]->getX() == x && breadcrumbs[i]->getY() == y) {
@@ -53,6 +56,7 @@ bool Trail::contains(int x, int y) {
 
 // Milestone #4 Code
 
+// Milestone #4 Constructor
 Trail::Trail(int rows, int cols) {
    this->length = 0;
    breadcrumbs = nullptr;
@@ -64,6 +68,7 @@ Trail::Trail(int rows, int cols) {
    }
 }
 
+// Milestone #4 Copy Constructor
 Trail::Trail(Trail& other, int rows, int cols) {
    this->length = other.length;
    breadcrumbs = new Breadcrumb*[rows*cols];
