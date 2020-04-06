@@ -4,3 +4,7 @@ actual.out
 sample01.maze
 test01.maze
 test01.out
+*.out
+*.maze
+sampleTests/
+MazeTests/
