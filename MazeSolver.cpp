@@ -8,7 +8,10 @@ MazeSolver::MazeSolver() {
 }
 
 MazeSolver::~MazeSolver() {
-   delete solution;
+   if (solution != nullptr) {
+      delete solution;
+      solution = nullptr;
+   }
 }
 /*
    The solve method which takes in the input maze and solves it following the 

@@ -280,6 +280,7 @@ void delete_maze(Maze maze, int rows, int cols) {
     if (rows >= 0 && cols >= 0) {
         for (int i = 0; i != rows; ++i) {
             delete maze[i];
+            maze[i] = nullptr;
         }
         delete maze;
     }

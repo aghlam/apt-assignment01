@@ -27,6 +27,7 @@ Trail::~Trail() {
          breadcrumbs[i] = nullptr;
       }
    }
+   delete breadcrumbs;
 }
 
 // Return length of trail
